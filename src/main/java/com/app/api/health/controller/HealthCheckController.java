@@ -15,6 +15,7 @@ import java.util.Arrays;
 @RequiredArgsConstructor
 public class HealthCheckController {
 
+    //개발 또는 운영 환경을 확인하기 위
     private final Environment environment;
 
     @GetMapping("/health")
@@ -22,7 +23,7 @@ public class HealthCheckController {
 
         HealthCheckResponseDto healthResponseDto = HealthCheckResponseDto.builder()
                 .health("ok")
-                .activeProfiles(Arrays.asList(environment.getActiveProfiles()))
+                .activeProfiles(Arrays.asList(environment.getActiveProfiles())) //현재 실행중인 Profile 확인
                 .build();
 
         return ResponseEntity.ok(healthResponseDto);
