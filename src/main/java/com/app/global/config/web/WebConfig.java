@@ -20,6 +20,8 @@ public class WebConfig implements WebMvcConfigurer {
                         HttpMethod.PATCH.name(),
                         HttpMethod.DELETE.name(),
                         HttpMethod.OPTIONS.name()
-                );
+                ).maxAge(3600); //Access-Control-Max-Age: 3600 으로 설정
+        // 접근 제어 시간을 3600ms로 설정
+        // default -> 1800
     }
 }
