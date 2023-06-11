@@ -48,4 +48,14 @@ public class GlobalExceptionHandler {
                 .body(errorResponse);
     }
 
+    /**
+     * 비즈니스 로직 실행 중 오류 발생
+     */
+    @ExceptionHandler(BusinessException.class)
+    protected ResponseEntity<ErrorResponse> handleConflict(BusinessException e){
+        log.error("handleConflict", e);
+        ErrorResponse errorResponse = ErrorResponse.of(e.getErrorCode().getErrorCode(), e.getMessage());
+        return ResponseEntity.status(e.getErrorCode().getHttpStatus())
+                .body(errorResponse);
+    }
 }
