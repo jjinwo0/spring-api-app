@@ -30,4 +30,11 @@ public class ExceptionTestController {
             throw new BusinessException(ErrorCode.TEST);
         return "ok";
     }
+
+    @GetMapping("/exception-test")
+    public String exceptionTest(String isError){
+        if (isError.equals("true"))
+            throw new IllegalStateException("예외 테스트");
+        return "ok";
+    }
 }
