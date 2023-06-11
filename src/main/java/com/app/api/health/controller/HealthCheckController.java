@@ -15,7 +15,7 @@ import java.util.Arrays;
 @RequiredArgsConstructor
 public class HealthCheckController {
 
-    //개발 또는 운영 환경을 확인하기 위
+    //개발 또는 운영 환경을 확인하기 위해 사용하는 환경변수 클래스
     private final Environment environment;
 
     @GetMapping("/health")

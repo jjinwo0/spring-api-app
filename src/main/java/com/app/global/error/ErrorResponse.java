@@ -25,7 +25,7 @@ public class ErrorResponse {
         return ErrorResponse.builder()
                 .errorCode(errorCode)
                 .errorMessage(createErrorMessage(bindingResult)) // BindingResult 안에 에러 정보들이 들어감
-                .build()
+                .build();
     }
 
     private static String createErrorMessage(BindingResult bindingResult) {
