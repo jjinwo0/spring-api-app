@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestHeader;
 public interface KakaoTokenClient {
 
     @PostMapping(value = "/oauth/token", consumes = "application/json")
+    // Request에 담긴 내용을 한번에 처리 -> @SpringQueryMap
     KakaoTokenDto.Response requestKakaoToken(@RequestHeader("Content-Type") String contentType,
                                              @SpringQueryMap KakaoTokenDto.Request request);
 }

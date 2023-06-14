@@ -2,6 +2,7 @@ package com.app.web.kakaotoken.dto;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.ToString;
 
 public class KakaoTokenDto {
 
@@ -14,7 +15,7 @@ public class KakaoTokenDto {
         private String client_secret;
     }
 
-    @Builder @Getter
+    @Builder @Getter @ToString
     public static class Response{
         private String token_type;
         private String access_token;
