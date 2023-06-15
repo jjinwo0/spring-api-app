@@ -11,8 +11,8 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Getter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Getter // @Setter 사용하지 않음 -> Entity의 필드 값들을 필요한 부분만 insert update 해야하기 때문 (무분별한 값 세팅은 피해야 함)
+@NoArgsConstructor(access = AccessLevel.PROTECTED) // 기본 생성자가 항상 필요함 + 객체의 무분별한 생성을 피하기 위해 PROTECTED setting
 public class Member extends BaseEntity {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,7 +32,7 @@ public class Member extends BaseEntity {
     private String memberName;
 
     @Column(length = 200)
-    private String profile;
+    private String profile; // 프로필 사진 주소 저장 컬럼
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 10)
@@ -43,4 +43,3 @@ public class Member extends BaseEntity {
 
     private LocalDateTime tokenExpirationTime;
 }
-
