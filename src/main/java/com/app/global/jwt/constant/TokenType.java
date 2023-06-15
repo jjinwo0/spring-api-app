@@ -1,2 +1,6 @@
-package com.app.global.jwt.constant;public enum TokenType {
+package com.app.global.jwt.constant;
+
+public enum TokenType {
+
+    ACCESS, REFRESH;
 }
