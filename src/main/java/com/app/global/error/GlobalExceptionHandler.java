@@ -1,6 +1,7 @@
-package com.app.global.error.exception;
+package com.app.global.error;
 
 import com.app.global.error.ErrorResponse;
+import com.app.global.error.exception.BusinessException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -1,14 +1,17 @@
 package com.app.global.jwt.service;
 
 import com.app.domain.member.constant.Role;
+import com.app.global.error.ErrorCode;
+import com.app.global.error.exception.AuthenticationException;
 import com.app.global.jwt.constant.GrantType;
 import com.app.global.jwt.constant.TokenType;
 import com.app.global.jwt.dto.JwtTokenDto;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-
 import java.nio.charset.StandardCharsets;
 import java.util.Date;
 
@@ -70,5 +73,34 @@ public class TokenManager {
                 .compact();
 
         return refreshToken;
+    }
+
+    // token 검증
+    public void validateToken(String token){
+        try{
+            Jwts.parser()
+                    .setSigningKey(tokenSecret.getBytes(StandardCharsets.UTF_8)) // 토큰 생성 시 사용했던 secret key
+                    .parseClaimsJws(token); // token parsing
+        } catch (ExpiredJwtException e){
+            log.info("token 만료", e);
+            throw new AuthenticationException(ErrorCode.TOKEN_EXPIRED);
+        } catch (Exception e){
+            log.info("유효하지 않은 token", e);
+            throw new AuthenticationException(ErrorCode.NOT_VALID_TOKEN);
+        }
+    }
+
+    public Claims getTokenClaims(String token){
+        Claims claims;
+
+        try {
+            claims = Jwts.parser().setSigningKey(tokenSecret.getBytes(StandardCharsets.UTF_8))
+                    .parseClaimsJws(token).getBody();
+        } catch (Exception e){
+            log.info("유효하지 않은 token", e);
+            throw new AuthenticationException(ErrorCode.NOT_VALID_TOKEN);
+        }
+
+        return claims;
     }
 }
