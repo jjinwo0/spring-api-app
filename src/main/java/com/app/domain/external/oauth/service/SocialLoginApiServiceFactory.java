@@ -22,6 +22,7 @@ public class SocialLoginApiServiceFactory {
             socialLoginApiServiceBeanName = "kakaoLoginApiServiceImpl";
         }
 
+        // 빈의 이름으로 구현체 추출
         return socialLoginApiServices.get(socialLoginApiServiceBeanName);
     }
 }

@@ -11,7 +11,11 @@ public class KakaoUserInfoResponseDto {
     @JsonProperty("kakao_account")
     private KakaoAccount kakaoAccount;
 
-    @Getter
+    /**
+     * static inner class의 사용
+     * Request, Response 각각에 대한 DTO를 따로 생성하지 않고 inner class로 관리
+     */
+    @Getter @Setter
     public static class KakaoAccount{
         private String email;
         private Profile profile;
