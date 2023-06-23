@@ -30,8 +30,9 @@ public class OAuthLoginController {
 
         String accessToken = authorizationHeader.split(" ")[1];
 
-        oAuthLoginService.oauthLogin(accessToken, MemberType.from(oauthLoginRequestDto.getMemberType()));
+        OAuthLoginDto.Response jwtTokenResponseDto = oAuthLoginService
+                .oauthLogin(accessToken, MemberType.from(oauthLoginRequestDto.getMemberType()));
 
-        return ResponseEntity.ok(OAuthLoginDto.Response.builder().build());
+        return ResponseEntity.ok(jwtTokenResponseDto);
     }
 }

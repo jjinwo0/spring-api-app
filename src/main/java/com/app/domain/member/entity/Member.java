@@ -3,6 +3,8 @@ package com.app.domain.member.entity;
 import com.app.domain.common.BaseEntity;
 import com.app.domain.member.constant.MemberType;
 import com.app.domain.member.constant.Role;
+import com.app.global.jwt.dto.JwtTokenDto;
+import com.app.global.util.DateTimeUtils;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -53,5 +55,10 @@ public class Member extends BaseEntity {
         this.memberName = memberName;
         this.profile = profile;
         this.role = role;
+    }
+
+    public void updateRefreshToken(JwtTokenDto jwtTokenDto) {
+        this.refreshToken = jwtTokenDto.getRefreshToken();
+        this.tokenExpirationTime = DateTimeUtils.convertToLocalDateTime(jwtTokenDto.getRefreshTokenExpireTime());
     }
 }
