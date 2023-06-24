@@ -12,7 +12,7 @@ public class SecurityConfig {
     private String accessTokenExpirationTime;
     @Value("${token.refresh-token-expiration-time}")
     private String refreshTokenExpirationTime;
-    @Value("{token.secret}")
+    @Value("${token.secret}")
     private String tokenSecret;
 
     @Bean
